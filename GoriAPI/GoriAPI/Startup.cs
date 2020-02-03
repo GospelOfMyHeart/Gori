@@ -29,9 +29,11 @@ namespace GoriAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
 
-            services.AddDbContext<DAL.EF.Context>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<DAL.EF.Context>(options => {
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("GoriAPI"));
+                });
 
             services.AddRepositories();
             services.AddServices();
