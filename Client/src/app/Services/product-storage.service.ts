@@ -33,17 +33,4 @@ export class ProductStorageService {
   public deleteDrink(drinkId:number):Observable<null>{
     return this.http.delete<null>(this.apiRoute+'/'+drinkId);
   }
-
-  private getDrinkViewModel(model: DrinkModel,index: number): DrinkViewModel{
-
-    let newModel = new DrinkViewModel({id: model.id,
-      name: model.name,
-      priceLiter: model.priceLiter,
-      actualVolume: model.actualVolume,
-      drinkCategoryName: ""
-     });
-    this.categoriesService.getCategory(model.drinkCategoryId).subscribe((data)=>{newModel.drinkCategoryName = data.title});
-
-    return newModel;
-  }
 }

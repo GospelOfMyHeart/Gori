@@ -27,7 +27,7 @@
       </div>
       <div class="alert alert-danger"
       *ngIf="productCreateForm.controls['actualVolume'].invalid && productCreateForm.controls['actualVolume'].touched">
-      Описание не указано
+      Количество не указано
       </div>
 
       <div class="form-group">
@@ -39,7 +39,7 @@
     </div>
       <div class="alert alert-danger"
       *ngIf="productCreateForm.controls['drinkCategoryName'].invalid && productCreateForm.controls['drinkCategoryName'].touched">
-      Описание не указано
+      Категория не указана
       </div>
 
       <button class="btn col-6 col-sm-4 primary-color" [disabled]="productCreateForm.invalid" (click)="createDrinkProduct()">Создать</button>

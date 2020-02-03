@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { DrinkCategoryModel } from './../../../Models/drink-category-model';
 import { CategoriesService } from './../../../Services/categories.service';
 import { DrinkModel } from './../../../Models/drink-model';
@@ -13,8 +14,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductStorageEditComponent implements OnInit {
 
-  id: number;
-  model: DrinkModel;
+  drinkId: number;
+  drinkModel: DrinkModel;
 
   selectedCategory: DrinkCategoryModel = new DrinkCategoryModel({});
   categories: DrinkCategoryModel[] = [];
@@ -25,15 +26,16 @@ export class ProductStorageEditComponent implements OnInit {
     private fb: FormBuilder,
     private activeRoute: ActivatedRoute,
     private productService: ProductStorageService,
-    private categoryService: CategoriesService
+    private categoryService: CategoriesService,
+    private location: Location
   ) {
-    this.id = this.activeRoute.snapshot.params.id;
-    this.activeRoute.params.subscribe(params=>this.id=params.id);
+    this.drinkId = this.activeRoute.snapshot.params.id;
+    this.activeRoute.params.subscribe(params=>this.drinkId=params.id);
 
     this.drinkUpdateForm = fb.group({
       productName:['',[Validators.required]],
-      pricePerLiter:['',[Validators.required, Validators.pattern(/^[,\d]+$/)]],
-      actualVolume:['',[Validators.required,Validators.pattern(/^[,\d]+$/)]],
+      pricePerLiter:['',[Validators.required, Validators.pattern(/^[.\d]+$/)]],
+      actualVolume:['',[Validators.required,Validators.pattern(/^[.\d]+$/)]],
       drinkCategoryName:['',[Validators.required]]
     });
    }
@@ -43,22 +45,45 @@ export class ProductStorageEditComponent implements OnInit {
   }
 
   updateView(){
-    this.productService.getDrink(this.id).subscribe((model)=>{
-      this.model = model;
-      this.categoryService.getCategory(model.drinkCategoryId)
-      .subscribe((model)=>{
-      this.selectedCategory=model;
+    this.productService.getDrink(this.drinkId).subscribe((drinkModel)=>{
+      
+      this.drinkModel = drinkModel;
 
-    });
+      this.categoryService.getAllCategories()
+      .subscribe((model)=>{
+
+      this.selectedCategory=model.find((element)=>element.id == this.drinkModel.id);
+      this.categories = model;
+
+      this.drinkUpdateForm.get('productName').setValue(this.drinkModel.name);
+      this.drinkUpdateForm.get('pricePerLiter').setValue(this.drinkModel.priceLiter);
+      this.drinkUpdateForm.get('actualVolume').setValue(this.drinkModel.actualVolume);
+      this.drinkUpdateForm.get('drinkCategoryName').setValue(this.drinkModel.drinkCategoryId);
+      });
     });
 
     
   }
-  deleteCategory(){
+  deleteDrink(){
 
+    
+    this.productService.deleteDrink(this.drinkId).subscribe(()=>{
+      this.back();
+    });
   }
 
-  saveCategory(){
+  saveDrink(){
+    this.drinkModel.name = this.drinkUpdateForm.get('productName').value;
+    this.drinkModel.priceLiter =this.drinkUpdateForm.get('pricePerLiter').value;
+    this.drinkModel.actualVolume=this.drinkUpdateForm.get('actualVolume').value;
+    this.drinkModel.drinkCategoryId =this.drinkUpdateForm.get('drinkCategoryName').value;
+
+      this.productService.updateDrink(this.drinkModel).subscribe((model)=>{
+        this.location.back();
+      })
+  }
+  back(){
+    this.location.back();
 
   }
 

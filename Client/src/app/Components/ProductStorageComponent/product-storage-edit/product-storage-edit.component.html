@@ -1,1 +1,48 @@
-<p>product-storage-edit works!</p>
+<app-FormBack></app-FormBack>
+<form [formGroup]="drinkUpdateForm">
+    <div class="form-group">
+        <label for="productName" class="primary-text-color">Название напитка</label>
+        <input type="text" class="form-control" formControlName="productName" 
+        id="productName" placeholder="Введите название напитка">
+      </div>
+      <div class="alert alert-danger"
+      *ngIf="drinkUpdateForm.controls['productName'].invalid && drinkUpdateForm.controls['productName'].touched">
+      Название не указано
+      </div>
+  
+      <div class="form-group">
+        <label for="pricePerLiter" class="primary-text-color">Цена за литр</label>
+        <input type="text" class="form-control" formControlName="pricePerLiter" 
+        id="pricePerLiter" placeholder="Введите цену напитка">
+      </div>
+      <div class="alert alert-danger"
+      *ngIf="drinkUpdateForm.controls['pricePerLiter'].invalid && drinkUpdateForm.controls['pricePerLiter'].touched">
+      Цена не указана
+      </div>
+      
+      <div class="form-group">
+        <label for="actualVolume" class="primary-text-color">Количество в литрах</label>
+        <input type="text" class="form-control" formControlName="actualVolume" 
+        id="actualVolume" placeholder="Введите количество в литрах">
+      </div>
+      <div class="alert alert-danger"
+      *ngIf="drinkUpdateForm.controls['actualVolume'].invalid && drinkUpdateForm.controls['actualVolume'].touched">
+      Количество не указано
+      </div>
+
+      <div class="form-group">
+        <label for="drinkCategoryName" class="primary-text-color">Категория напитка</label>
+       <select id ="drinkCategoryName" class ="form-control" formControlName="drinkCategoryName"> 
+        <option value="">Выберите категорию</option>
+           <option [value]='category.id' *ngFor="let category of categories" >  {{category.title}}</option>
+       </select>
+    </div>
+      <div class="alert alert-danger"
+      *ngIf="drinkUpdateForm.controls['drinkCategoryName'].invalid && drinkUpdateForm.controls['drinkCategoryName'].touched">
+      Категория не указана
+      </div>
+</form>
+<div class = "row row-padding">
+  <button class="btn col-5 col-sm-4 primary-color " (click) = "saveDrink()"> Сохранить</button>
+  <button class="btn col-5 col-sm-4 primary-color ml-auto " (click) = "deleteDrink()"> -Удалить</button>
+</div>

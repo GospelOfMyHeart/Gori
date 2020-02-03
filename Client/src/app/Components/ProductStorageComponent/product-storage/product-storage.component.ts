@@ -36,7 +36,6 @@ export class ProductStorageComponent implements OnInit {
   }
   
   navigateToEdit(id: number){
-
     this.router.navigate([this.editRoute+"/"+id]);
   }
 }
