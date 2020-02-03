@@ -16,6 +16,9 @@
 .third-color{
     background-color:#dd7907;
 }
+.container-background{
+    background-color: rgba(0,0,0,0);
+}
 tr, th{
     color: #FFFFFF;
 }
@@ -35,4 +38,8 @@ tr, th{
 .btn.focus{
     color:rgba(255,255,255) !important;
     box-shadow: 0 0 0 0.2rem rgba(255, 136, 0, 0.5);
+}
+
+.custom-padding{
+    padding: 10px 3% 20px 3%;
 }
