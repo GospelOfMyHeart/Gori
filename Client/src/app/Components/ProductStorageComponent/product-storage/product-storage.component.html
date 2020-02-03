@@ -1,1 +1,47 @@
-<p>product-storage works!</p>
+<div class = "row custom-padding">
+    <button class="btn col-6 col-sm-4 primary-color " (click) = "navigateToCreate()"> + Новый товар</button>
+</div>
+<div class = " table-responsive" *ngIf = "drinks.length>0">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    №
+                </th>
+                <th>
+                    Название
+                </th>
+                <th>
+                    Цена за литр
+                </th>   
+                <th>
+                    В наличии (л.)
+                </th>    
+                <th>
+                    Категория:
+                </th>           
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor = "let drink of drinks" (click)="navigateToEdit(drink.id)">
+                <th> 
+                    {{drink.id}}
+                </th>
+                <td>
+                    {{drink.name}}
+                </td>
+                <td>
+                    {{drink.priceLiter}}
+                </td>
+                <td>
+                    {{drink.actualVolume}}
+                </td>
+                <td>
+                    {{drink.drinkCategoryName}}
+                </td>
+            </tr>
+        </tbody>
+        
+    </table>
+</div>

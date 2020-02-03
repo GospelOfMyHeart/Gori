@@ -1,3 +1,5 @@
+import { ProductStorageEditComponent } from './../Components/ProductStorageComponent/product-storage-edit/product-storage-edit.component';
+import { ProductStorageCreateComponent } from './../Components/ProductStorageComponent/product-storage-create/product-storage-create.component';
 import { CategoryEditComponent } from './../Components/CategoriesComponent/category-edit/category-edit.component';
 import { CategoriesComponent } from './../Components/CategoriesComponent/categories/categories.component';
 import { ProductStorageComponent } from './../Components/ProductStorageComponent/product-storage/product-storage.component';
@@ -36,6 +38,18 @@ const routes: Routes = [
   {
     path: appRoutes.categoriesEdit+'/:id',
     component: CategoryEditComponent
+  },
+  {
+    path: appRoutes.vault,
+    component: ProductStorageComponent
+  },
+  {
+    path: appRoutes.vaultCreate,
+    component: ProductStorageCreateComponent
+  },
+  {
+    path: appRoutes.vaultEdit+'/:id',
+    component: ProductStorageEditComponent
   }
   // {
   //   path: 'orders'

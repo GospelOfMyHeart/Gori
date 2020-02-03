@@ -35,13 +35,14 @@ export class CategoryCreateComponent implements OnInit {
     const title = this.categoryCreateForm.get('categoryName').value;
     const description = this.categoryCreateForm.get('description').value;
 
-    let model = new DrinkCategoryModel({id:1,title,description});
+    let model = new DrinkCategoryModel({id:0,title,description});
     console.log(model);
     this.categoriesService.addCategory(model).subscribe((Response)=>{
       console.log("Fine");
       this.router.navigateByUrl(environment.routes.categories);
     }, (error)=>{
-      console.log("Error while adding new category: "+error);
+      console.log("Error while adding new category: ");
+      console.log(error);
     });
   }
 

@@ -1,3 +1,6 @@
+import { DrinkModelConverterService } from './Services/drink-model-converter.service';
+import { FormBackComponent } from './Components/FormsUtils/FormBack/FormBack.component';
+import { ProductStorageService } from './Services/product-storage.service';
 import { CategoriesService } from './Services/categories.service';
 import { MenuServiceService } from './Services/menu-service.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -14,6 +17,8 @@ import { CategoriesComponent } from './Components/CategoriesComponent/categories
 import { CategoryCreateComponent } from './Components/CategoriesComponent/category-create/category-create.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CategoryEditComponent } from './Components/CategoriesComponent/category-edit/category-edit.component';
+import { ProductStorageCreateComponent } from './Components/ProductStorageComponent/product-storage-create/product-storage-create.component';
+import { ProductStorageEditComponent } from './Components/ProductStorageComponent/product-storage-edit/product-storage-edit.component';
 
 
 
@@ -27,7 +32,10 @@ import { CategoryEditComponent } from './Components/CategoriesComponent/category
     ProductStorageComponent,
     CategoriesComponent,
     CategoryCreateComponent,
-    CategoryEditComponent
+    CategoryEditComponent,
+    ProductStorageCreateComponent,
+    ProductStorageEditComponent,
+    FormBackComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +43,7 @@ import { CategoryEditComponent } from './Components/CategoriesComponent/category
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [MenuServiceService, CategoriesService],
+  providers: [MenuServiceService, CategoriesService, ProductStorageService,DrinkModelConverterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

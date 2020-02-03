@@ -1,0 +1,46 @@
+<app-FormBack></app-FormBack>
+  <form [formGroup]="productCreateForm">
+      <div class="form-group">
+        <label for="productName" class="primary-text-color">Название напитка</label>
+        <input type="text" class="form-control" formControlName="productName" 
+        id="productName" placeholder="Введите название напитка">
+      </div>
+      <div class="alert alert-danger"
+      *ngIf="productCreateForm.controls['productName'].invalid && productCreateForm.controls['productName'].touched">
+      Название не указано
+      </div>
+  
+      <div class="form-group">
+        <label for="pricePerLiter" class="primary-text-color">Цена за литр</label>
+        <input type="text" class="form-control" formControlName="pricePerLiter" 
+        id="pricePerLiter" placeholder="Введите цену напитка">
+      </div>
+      <div class="alert alert-danger"
+      *ngIf="productCreateForm.controls['pricePerLiter'].invalid && productCreateForm.controls['pricePerLiter'].touched">
+      Цена не указана
+      </div>
+      
+      <div class="form-group">
+        <label for="actualVolume" class="primary-text-color">Количество в литрах</label>
+        <input type="text" class="form-control" formControlName="actualVolume" 
+        id="actualVolume" placeholder="Введите количество в литрах">
+      </div>
+      <div class="alert alert-danger"
+      *ngIf="productCreateForm.controls['actualVolume'].invalid && productCreateForm.controls['actualVolume'].touched">
+      Описание не указано
+      </div>
+
+      <div class="form-group">
+        <label for="drinkCategoryName" class="primary-text-color">Категория напитка</label>
+       <select id ="drinkCategoryName" class ="form-control" formControlName="drinkCategoryName"> 
+        <option value="">Выберите категорию</option>
+           <option [value]='category.id' *ngFor="let category of categories">  {{category.title}}</option>
+       </select>
+    </div>
+      <div class="alert alert-danger"
+      *ngIf="productCreateForm.controls['drinkCategoryName'].invalid && productCreateForm.controls['drinkCategoryName'].touched">
+      Описание не указано
+      </div>
+
+      <button class="btn col-6 col-sm-4 primary-color" [disabled]="productCreateForm.invalid" (click)="createDrinkProduct()">Создать</button>
+  </form>
