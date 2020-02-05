@@ -1,3 +1,4 @@
+import { environment } from './../../../../environments/environment.prod';
 import { Location } from '@angular/common';
 import { DrinkCategoryModel } from './../../../Models/drink-category-model';
 import { CategoriesService } from './../../../Services/categories.service';
@@ -34,8 +35,8 @@ export class ProductStorageEditComponent implements OnInit {
 
     this.drinkUpdateForm = fb.group({
       productName:['',[Validators.required]],
-      pricePerLiter:['',[Validators.required, Validators.pattern(/^[.\d]+$/)]],
-      actualVolume:['',[Validators.required,Validators.pattern(/^[.\d]+$/)]],
+      pricePerLiter:['',[Validators.required, Validators.pattern(environment.regExp.money)]],
+      actualVolume:['',[Validators.required,Validators.pattern(environment.regExp.money)]],
       drinkCategoryName:['',[Validators.required]]
     });
    }

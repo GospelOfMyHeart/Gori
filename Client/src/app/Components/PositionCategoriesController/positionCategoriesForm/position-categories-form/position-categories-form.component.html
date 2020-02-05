@@ -1,0 +1,21 @@
+<form [formGroup]="positionCategoryForm">
+    <div class="form-group">
+      <label for="title" class="primary-text-color">Название категории позиции</label>
+      <input type="text" class="form-control" formControlName="title" 
+      id="title" placeholder="Введите название категории позиции">
+    </div>
+    <div class="alert alert-danger"
+    *ngIf="positionCategoryForm.controls['title'].invalid && positionCategoryForm.controls['title'].touched">
+    Название не указано
+    </div>
+
+    <div class="form-group">
+      <label for="description" class="primary-text-color">Описание</label>
+      <input type="text" class="form-control" formControlName="description" 
+      id="description" placeholder="Введите описание категории позиции">
+    </div>
+    <div class="alert alert-danger"
+    *ngIf="positionCategoryForm.controls['description'].invalid && positionCategoryForm.controls['description'].touched">
+    Описание не указано
+    </div>
+</form>

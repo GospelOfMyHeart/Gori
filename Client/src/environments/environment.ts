@@ -16,9 +16,15 @@ export const environment = {
     categories: 'categories',
     categoriesEdit: 'categoryEdit',
     categoriesCreate: 'categories/create',
+    positionCategories:'positionCategories',
+    positionCategoriesCreate:'positionCategories/create',
+    positionCategoriesEdit:'positionCategoriesEdit',
     report: 'report'
   },
-  apiBaseUrl: 'https://localhost:44375/api'
+  apiBaseUrl: 'https://localhost:44375/api',
+  regExp:{
+    money: /^[.\d]+$/
+  }
 };
 
 /*

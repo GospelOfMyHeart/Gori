@@ -40,6 +40,6 @@ tr, th{
     box-shadow: 0 0 0 0.2rem rgba(255, 136, 0, 0.5);
 }
 
-.custom-padding{
+.custom-padding-tableHead{
     padding: 10px 3% 20px 3%;
 }
